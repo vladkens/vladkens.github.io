@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset
+    xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+    xmlns:xhtml="http://www.w3.org/1999/xhtml"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9
+                        http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
+ <url>
+  <loc>https://vladkens.github.io/</loc>
+  <lastmod>2015-09-13T23:15:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://vladkens.github.io/2015/</loc>
+  <lastmod>2015-09-13T19:02:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://vladkens.github.io/archive.html</loc>
+  <lastmod>2015-09-13T23:05:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://vladkens.github.io/categories/</loc>
+  <lastmod>2015-09-13T23:15:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://vladkens.github.io/categories/javascript/</loc>
+  <lastmod>2015-09-13T22:58:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://vladkens.github.io/categories/svg/</loc>
+  <lastmod>2015-09-13T22:58:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://vladkens.github.io/snap-svg/</loc>
+  <lastmod>2015-09-13T22:58:00Z</lastmod>
+ </url>
+</urlset>
