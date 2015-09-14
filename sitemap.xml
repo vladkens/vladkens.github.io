@@ -7,7 +7,7 @@
                         http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd">
  <url>
   <loc>https://vladkens.github.io/</loc>
-  <lastmod>2015-09-13T23:15:00Z</lastmod>
+  <lastmod>2015-09-13T23:59:00Z</lastmod>
  </url>
  <url>
   <loc>https://vladkens.github.io/2015/</loc>
@@ -15,19 +15,31 @@
  </url>
  <url>
   <loc>https://vladkens.github.io/archive.html</loc>
-  <lastmod>2015-09-13T23:05:00Z</lastmod>
+  <lastmod>2015-09-13T23:59:00Z</lastmod>
  </url>
  <url>
   <loc>https://vladkens.github.io/categories/</loc>
-  <lastmod>2015-09-13T23:15:00Z</lastmod>
+  <lastmod>2015-09-13T23:59:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://vladkens.github.io/categories/javascript.html</loc>
+  <lastmod>2015-09-13T23:59:00Z</lastmod>
  </url>
  <url>
   <loc>https://vladkens.github.io/categories/javascript/</loc>
   <lastmod>2015-09-13T22:58:00Z</lastmod>
  </url>
  <url>
+  <loc>https://vladkens.github.io/categories/svg.html</loc>
+  <lastmod>2015-09-13T23:59:00Z</lastmod>
+ </url>
+ <url>
   <loc>https://vladkens.github.io/categories/svg/</loc>
   <lastmod>2015-09-13T22:58:00Z</lastmod>
+ </url>
+ <url>
+  <loc>https://vladkens.github.io/snap-svg.html</loc>
+  <lastmod>2015-09-13T23:59:00Z</lastmod>
  </url>
  <url>
   <loc>https://vladkens.github.io/snap-svg/</loc>
