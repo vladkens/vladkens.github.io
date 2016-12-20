@@ -12,11 +12,6 @@
             font-family: serif;
         }
 
-        select {
-            width: 160px;
-            margin-bottom: 10px;
-        }
-
         .char-table {
             margin-bottom: 10px;
             border-collapse: collapse;
@@ -29,17 +24,27 @@
             width: 48px;
             height: 48px;
             text-align: center;
+            vertical-align: middle;
         }
 
-        .char-code {
+        .char-code, .char-demo {
+            line-height: normal;
             color: grey;
             position: absolute;
-            right: 0;
             top: 0;
-            font-family: monospace;
             font-size: 0.4em;
             padding: 0 1px;
             user-select: none;
+        }
+
+        .char-code {
+            right: 0;
+            font-family: monospace;
+        }
+
+        .char-demo {
+            left: 0;
+            font-family: serif;
         }
     </style>
 </head>
@@ -104,10 +109,15 @@
             tr.appendChild(td);
             td.innerHTML = String.fromCharCode(charCodes[i]);
 
-            let el = document.createElement('div');
-            td.appendChild(el);
-            el.innerHTML = charCodes[i];
-            el.classList.add('char-code');
+            let elDemo = document.createElement('div');
+            td.appendChild(elDemo);
+            elDemo.innerHTML = String.fromCharCode(charCodes[i]);
+            elDemo.classList.add('char-demo');
+
+            let elCode = document.createElement('div');
+            td.appendChild(elCode);
+            elCode.innerHTML = charCodes[i];
+            elCode.classList.add('char-code');
         }
 
         document.body.appendChild(table);
@@ -126,7 +136,6 @@
     }
 
     initDropZone();
-
     createCharTable('', range(256));
     createCharTable('en', alphabetToCharCode('a b c d e f g h i j k l m n o p q r s t u v w x y z'));
     createCharTable('ru', alphabetToCharCode('а б в г д е ё ж з и й к л м н о п р с т у ф х ц ч ш щ ъ ы ь э ю я'));
