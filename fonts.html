@@ -1,0 +1,140 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+          content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <style>
+        body {
+            font-size: 24px;
+            font-family: serif;
+        }
+
+        select {
+            width: 160px;
+            margin-bottom: 10px;
+        }
+
+        .char-table {
+            margin-bottom: 10px;
+            border-collapse: collapse;
+        }
+
+        .char-table td {
+            position: relative;
+            border: 1px solid #eee;
+            box-sizing: border-box;
+            width: 48px;
+            height: 48px;
+            text-align: center;
+        }
+
+        .char-code {
+            color: grey;
+            position: absolute;
+            right: 0;
+            top: 0;
+            font-family: monospace;
+            font-size: 0.4em;
+            padding: 0 1px;
+            user-select: none;
+        }
+    </style>
+</head>
+<body>
+<script>
+    function setFontFamily(name) {
+        Array.from(document.querySelectorAll('.char-table')).forEach(i => {
+            i.style.fontFamily = name;
+        });
+    }
+
+    function addFont(name, src) {
+        name = name.replace('.', '-');
+        let style = document.createElement('style');
+        style.type = 'text/css';
+        style.rel = 'stylesheet';
+        style.innerHTML = `@font-face {
+            font-family: "${name}";
+            src: url(${src});
+        }`;
+        document.head.appendChild(style);
+        setFontFamily(name);
+    }
+
+    function initDropZone() {
+        let control = document.body;
+        control.ondrop = e => {
+            e.preventDefault();
+            Array.from(e.dataTransfer.items).forEach(i => {
+                let blob = i.getAsFile();
+                let reader = new FileReader();
+                reader.onload = e => {
+                    let mime = 'application/octet-stream';
+                    let data = `data:${mime};${e.target.result.slice(6)}`;
+                    addFont(blob.name, data);
+                };
+                reader.readAsDataURL(blob);
+            });
+        };
+        control.ondragover = (e => e.preventDefault());
+    }
+
+    function createCharTable(title = null, charCodes, split = 16) {
+        if (name !== null) {
+            let el = document.createElement('div');
+            el.innerHTML = title;
+            document.body.appendChild(el);
+        }
+
+        let table = document.createElement('table');
+        table.classList.add('char-table');
+        let tr;
+
+        for (let i = 0; i < charCodes.length; ++i) {
+            if (i % split === 0) {
+                tr = document.createElement('tr');
+                table.appendChild(tr);
+            }
+
+            let td = document.createElement('td');
+            td.classList.add(`char-${charCodes[i]}`);
+            tr.appendChild(td);
+            td.innerHTML = String.fromCharCode(charCodes[i]);
+
+            let el = document.createElement('div');
+            td.appendChild(el);
+            el.innerHTML = charCodes[i];
+            el.classList.add('char-code');
+        }
+
+        document.body.appendChild(table);
+    }
+
+    function range(from, to = null) {
+        if (to === null) [from, to] = [0, from];
+        return Array.from(new Array(to - from)).map((_, i) => i + from);
+    }
+
+    function alphabetToCharCode(letters) {
+        letters = `${letters.toUpperCase()} ${letters.toLowerCase()}`;
+        letters = letters.split(' ');
+        letters = Array.from(new Set(letters));
+        return letters.map(i => i.charCodeAt(0));
+    }
+
+    initDropZone();
+
+    createCharTable('', range(256));
+    createCharTable('en', alphabetToCharCode('a b c d e f g h i j k l m n o p q r s t u v w x y z'));
+    createCharTable('ru', alphabetToCharCode('а б в г д е ё ж з и й к л м н о п р с т у ф х ц ч ш щ ъ ы ь э ю я'));
+    createCharTable('es', alphabetToCharCode('a b c d e f g h i j k l m n ñ o p q r s t u v w x y z'));
+    createCharTable('it', alphabetToCharCode('a b c d e f g h i j k l m n o p q r s t u v w x y z'));
+    createCharTable('fr', alphabetToCharCode('a b c d e f g h i j k l m n o p q r s t u v w x y z à â ç é è ê ë î ï ô ù û ü ÿ')); // æ œ
+    createCharTable('pt', alphabetToCharCode('a b c d e f g h i j k l m n o p q r s t u v w x y z á â ã à ç é ê í ó ô õ ú'));
+    createCharTable('tr', alphabetToCharCode('a b c ç d e f g ğ h ı i j k l m n o ö p r s ş t u ü v y z'));
+</script>
+</body>
+</html>
