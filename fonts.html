@@ -158,7 +158,7 @@
         else data = data.filter(i => i !== el.dataset.id);
 
         data = data.map(i => parseInt(i, 10)).sort();
-        window.location.hash = data.join(',');
+        window.location.hash = '#' + data.join(',');
         illuminateSelectedChars();
     }));
     
