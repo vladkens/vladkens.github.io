@@ -25,6 +25,8 @@
             height: 48px;
             text-align: center;
             vertical-align: middle;
+            user-select: none;
+            cursor: pointer;
         }
 
         .char-code, .char-demo {
@@ -45,6 +47,10 @@
         .char-demo {
             left: 0;
             font-family: serif;
+        }
+
+        .active {
+            box-shadow: inset 0 0 10px red;
         }
     </style>
 </head>
@@ -106,6 +112,7 @@
 
             let td = document.createElement('td');
             td.classList.add(`char-${charCodes[i]}`);
+            td.dataset.id = charCodes[i];
             tr.appendChild(td);
             td.innerHTML = String.fromCharCode(charCodes[i]);
 
@@ -144,6 +151,24 @@
     createCharTable('fr', alphabetToCharCode('a b c d e f g h i j k l m n o p q r s t u v w x y z à â ç é è ê ë î ï ô ù û ü ÿ')); // æ œ
     createCharTable('pt', alphabetToCharCode('a b c d e f g h i j k l m n o p q r s t u v w x y z á â ã à ç é ê í ó ô õ ú'));
     createCharTable('tr', alphabetToCharCode('a b c ç d e f g ğ h ı i j k l m n o ö p r s ş t u ü v y z'));
+
+    document.querySelectorAll('.char-table td').forEach(el => el.addEventListener('click', () => {
+        let data = window.location.hash.substr(1).split(',').filter(i => i.length);
+        if (data.indexOf(el.dataset.id) === -1) data.push(el.dataset.id);
+        else data = data.filter(i => i !== el.dataset.id);
+
+        data = data.map(i => parseInt(i, 10)).sort();
+        window.location.hash = data.join(',');
+        illuminateSelectedChars();
+    }));
+    
+    function illuminateSelectedChars() {
+        let data = window.location.hash.substr(1).split(',').filter(i => i.length);
+        document.querySelectorAll('.char-table td').forEach(el => el.classList.remove('active'));
+        data.forEach(i => document.querySelectorAll(`.char-${i}`).forEach(el => el.classList.add('active')));
+    }
+
+    illuminateSelectedChars();
 </script>
 </body>
 </html>
