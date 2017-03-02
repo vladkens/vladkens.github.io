@@ -146,11 +146,17 @@
     createCharTable('', range(256));
     createCharTable('en', alphabetToCharCode('a b c d e f g h i j k l m n o p q r s t u v w x y z'));
     createCharTable('ru', alphabetToCharCode('а б в г д е ё ж з и й к л м н о п р с т у ф х ц ч ш щ ъ ы ь э ю я'));
-    createCharTable('es', alphabetToCharCode('a b c d e f g h i j k l m n ñ o p q r s t u v w x y z'));
+
     createCharTable('it', alphabetToCharCode('a b c d e f g h i j k l m n o p q r s t u v w x y z'));
+    createCharTable('es', alphabetToCharCode('a b c d e f g h i j k l m n ñ o p q r s t u v w x y z'));
     createCharTable('fr', alphabetToCharCode('a b c d e f g h i j k l m n o p q r s t u v w x y z à â ç é è ê ë î ï ô ù û ü ÿ')); // æ œ
     createCharTable('pt', alphabetToCharCode('a b c d e f g h i j k l m n o p q r s t u v w x y z á â ã à ç é ê í ó ô õ ú'));
     createCharTable('tr', alphabetToCharCode('a b c ç d e f g ğ h ı i j k l m n o ö p r s ş t u ü v y z'));
+
+    createCharTable('de', alphabetToCharCode('a ä b c d e f g h i j k l m n o ö p q r s ß t u ü v w x y z'));
+    createCharTable('fi', alphabetToCharCode('a b c d e f g h i j k l m n o p q r s š t u v w x y z ž å ä ö'));
+    createCharTable('no', alphabetToCharCode('a b c d e f g h i j k l m n o p q r s t u v w x y z æ ø å'));
+    createCharTable('sv', alphabetToCharCode('a b c d e f g h i j k l m n o p q r s t u v w x y z å ä ö'));
 
     document.querySelectorAll('.char-table td').forEach(el => el.addEventListener('click', () => {
         let data = window.location.hash.substr(1).split(',').filter(i => i.length);
