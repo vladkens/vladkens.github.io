@@ -55,6 +55,7 @@
     </style>
 </head>
 <body>
+<button onclick="resetSelectedChars()" style="margin-bottom: 10px">reset selected symbols</button>
 <script>
     function setFontFamily(name) {
         Array.from(document.querySelectorAll('.char-table')).forEach(i => {
@@ -123,7 +124,7 @@
 
             let elCode = document.createElement('div');
             td.appendChild(elCode);
-            elCode.innerHTML = charCodes[i];
+            elCode.innerHTML = charCodes[i].toString(16);
             elCode.classList.add('char-code');
         }
 
@@ -172,6 +173,11 @@
         let data = window.location.hash.substr(1).split(',').filter(i => i.length);
         document.querySelectorAll('.char-table td').forEach(el => el.classList.remove('active'));
         data.forEach(i => document.querySelectorAll(`.char-${i}`).forEach(el => el.classList.add('active')));
+    }
+
+    function resetSelectedChars() {
+        window.location.hash = '#';
+        illuminateSelectedChars();
     }
 
     illuminateSelectedChars();
