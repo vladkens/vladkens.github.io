@@ -27,6 +27,8 @@ let app = {
         button.innerText = 'reset selected symbols';
         button.classList.add('btn-reset');
         document.body.insertBefore(button, document.body.children[0]);
+
+        this.illuminateSelectedChars();
     },
 
     loadFont(name, src) {
