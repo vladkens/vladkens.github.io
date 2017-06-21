@@ -17,23 +17,46 @@ let app = {
             if (data.indexOf(el.dataset.id) === -1) data.push(el.dataset.id);
             else data = data.filter(i => i !== el.dataset.id);
 
-            data = data.map(i => parseInt(i, 10)).sort();
-            window.location.hash = '#' + data.join(',');
-            this.illuminateSelectedChars();
+            data = data.map(i => parseInt(i, 10));
+            this.selectChars(data);
         }));
 
-        let button = document.createElement('button');
-        button.addEventListener('click', () => this.resetSelectedChars());
-        button.innerText = 'reset selected symbols';
-        button.classList.add('btn-reset');
-        document.body.insertBefore(button, document.body.children[0]);
+        let btnReset = document.createElement('button');
+        document.body.insertBefore(btnReset, document.body.children[0]);
+        btnReset.addEventListener('click', () => this.resetSelectedChars());
+        btnReset.innerText = 'reset selected symbols';
+        btnReset.classList.add('btn-reset');
 
+        let btnFind = document.createElement('button');
+        document.body.insertBefore(btnFind, document.body.children[1]);
+        btnFind.innerText = 'select symbols in text';
+        btnFind.classList.add('btn-find');
+        btnFind.addEventListener('click', () => this.selectSymbolsFromDemo());
+
+        let lblDemo = document.createElement('textarea');
+        document.body.insertBefore(lblDemo, document.body.children[2]);
+        lblDemo.value = 'demo text';
+        lblDemo.classList.add('lbl-demo');
+
+        this.illuminateSelectedChars();
+    },
+
+    selectChars(chars) {
+        // let data = window.location.hash.substr(1).split(',').filter(i => i.length);
+        let data = [];
+        data = data.concat(chars).map(i => parseInt(i, 10));
+        data = Array.from(new Set(data));
+        data = data.sort((a, b) => a - b);
+
+        let scrollY = window.pageYOffset;
+        window.location.hash = '#' + data.join(',');
+        setTimeout(() => window.scrollTo(0, scrollY), 1);
         this.illuminateSelectedChars();
     },
 
     loadFont(name, src) {
         name = name.replace(/[^A-z0-9]/g);
-        console.log(name);
+        console.log(`font-name: ${name}`);
 
         let style = document.createElement('style');
         style.type = 'text/css';
@@ -47,6 +70,7 @@ let app = {
     },
 
     setFontFamily(name) {
+        document.querySelector('.lbl-demo').style.fontFamily = name;
         Array.from(document.querySelectorAll('.char-table')).forEach(i => {
             i.style.fontFamily = name;
         });
@@ -115,6 +139,12 @@ let app = {
     resetSelectedChars() {
         window.location.hash = '#';
         this.illuminateSelectedChars();
+    },
+
+    selectSymbolsFromDemo() {
+        this.resetSelectedChars();
+        let uniqueSymbols = Array.from(new Set(document.querySelector('.lbl-demo').value.split('')));
+        this.selectChars(uniqueSymbols.map(i => i.charCodeAt(0)));
     }
 };
 

@@ -46,4 +46,12 @@ body {
 
 .btn-reset {
     margin-bottom: 10px;
+    margin-right: 10px;
+}
+
+.lbl-demo {
+    width: 764px;
+    font-size: 1.2em;
+    display: block;
+    margin-bottom: 10px;
 }
