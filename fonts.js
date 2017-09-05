@@ -163,6 +163,8 @@ app.createCharTable('fi', alphabetToCharCode('a b c d e f g h i j k l m n o p q 
 app.createCharTable('no', alphabetToCharCode('a b c d e f g h i j k l m n o p q r s t u v w x y z æ ø å'));
 app.createCharTable('sv', alphabetToCharCode('a b c d e f g h i j k l m n o p q r s t u v w x y z å ä ö'));
 
+app.createCharTable('vi', alphabetToCharCode('a ă â b c d đ e ê g h i k l m n o ô ơ p q r s t u ư v x y a ă â e ê i o ô ơ u ư y à ằ ầ è ề ì ò ồ ờ ù ừ ỳ ả ẳ ẩ ẻ ể ỉ ỏ ổ ở ủ ử ỷ ã ẵ ẫ ẽ ễ ĩ õ ỗ ỡ ũ ữ ỹ á ắ ấ é ế í ó ố ớ ú ứ ý ạ ặ ậ ẹ ệ ị ọ ộ ợ ụ ự ỵ'));
+
 // http://www.xe.com/symbols.php
 // JSON.stringify(Object.assign(...Array.from(document.querySelectorAll('.currencySymblTable tr')).map(el => [el.querySelector('td:nth-child(2)').innerText, el.querySelector('td:nth-child(5)').innerText]).map(([k, v]) => ({[k]: v})).slice(1)))
 
